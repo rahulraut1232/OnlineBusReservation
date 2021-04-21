@@ -39,9 +39,6 @@ const HomeNavigation = (props) => {
             </Link>
           </li>
         </ul>
-        <div className="d-flex">
-          <button className="btn btn-outline-success">Logout</button>
-        </div>
       </div>
     </nav>
   );
