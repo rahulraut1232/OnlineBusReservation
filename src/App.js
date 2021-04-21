@@ -40,7 +40,7 @@ function App() {
           <Switch>
             <Route path="/signin" component={SignInScreen} />
             <Route path="/signup" component={SignupScreen} />
-            <Route path="/home" component={HomeScreen} />
+            <Route path="/" component={HomeScreen} />
             <Route path="/about" component={AboutScreen} />
             <Route path="/contact" component={ContactScreen} />
             <Route path="/show-booking" component={ShowBookingScreen} />
