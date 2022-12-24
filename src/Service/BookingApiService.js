@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://immense-retreat-08081.herokuapp.com";
+axios.defaults.baseURL =  "http://localhost:9001"; //"https://immense-retreat-08081.herokuapp.com";
 
 const header = {
   headers: {
@@ -19,7 +19,7 @@ class ApiService {
   }
   viewBookings(busId) {
     console.log(`bus id : ${busId}`);
-    return axios.get("/booking/view-bookings/" + busId, header);
+    return axios.get("/booking/view-bookings/", header);
   }
   cancelBooking(bookId) {
     console.log(`booking id : ${bookId}`);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://immense-retreat-08081.herokuapp.com";
+axios.defaults.baseURL =  "http://localhost:9001";  //"https://immense-retreat-08081.herokuapp.com";
 
 const header = {
   headers: {
@@ -25,7 +25,7 @@ class UserApiService {
     console.log(`profile : ${profile.name}`);
     const userId = localStorage.getItem("userId");
     console.log(`userId : ${localStorage.getItem("userId")}`);
-    return axios.put("/user/edit-profile/" + userId, profile, header);
+    return axios.post("/user/edit-profile/" + userId, profile, header);
   }
   viewProfile(userId) {
     console.log(`user id : ${userId}`);
@@ -34,6 +34,29 @@ class UserApiService {
   deleteUser(userId) {
     console.log(`user id : ${userId}`);
     return axios.delete("/user/delete-account/" + userId, header);
+  }
+
+  viewProfile2(userId) {
+    console.log(`user id : ${userId}`);
+    return axios.get("/user/view-profile-manager/" + userId, header);
+  }
+  editProfile2(profile) {
+    console.log(`profile : ${profile.name}`);
+    const userId = localStorage.getItem("userId");
+    console.log(`userId : ${localStorage.getItem("userId")}`);
+    return axios.post("/user/edit-profile-manager/" + userId, profile, header);
+  }
+
+  viewProfile3(userId) {
+    console.log(`user id : ${userId}`);
+    return axios.get("/user/view-profile-owner/" + userId, header);
+  }
+
+  editProfile3(profile) {
+    console.log(`profile : ${profile.name}`);
+    const userId = localStorage.getItem("userId");
+    console.log(`userId : ${localStorage.getItem("userId")}`);
+    return axios.post("/user/edit-profile-owner/" + userId, profile, header);
   }
 }
 

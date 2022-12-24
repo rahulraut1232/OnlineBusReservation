@@ -26,32 +26,41 @@ import CheckReservationScreen from "./screens/CheckReservationScreen";
 import ChangePasswordScreen from "./screens/ChangePassswordScreen";
 import DeleteAccountScreen from "./screens/DeleteAccountScreen";
 import BusScheduleScreen from "./screens/BusScheduleScreen";
+import viewProfileManager from "./screens/ViewProfileManager";
+import EditProfileManager from "./screens/EditProfileManager";
+import ViewProfileOwner from "./screens/ViewProfileOwner";
+import EditProfileOwner from "./screens/EditProfileOwner";
 import UserNavigation from "./components/UserNavigation";
 import OwnerNavigation from "./components/OwnerNavigation";
 import ManagerNavigation from "./components/ManagerNavigation";
 import HomeNavigation from "./components/HomeNavigation";
+import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const user = localStorage.getItem("user");
   return (
     <div>
       <Router>
-        <div className="container">
+        <div className="">
           <Switch>
             <Route path="/signin" component={SignInScreen} />
             <Route path="/signup" component={SignupScreen} />
-            <Route path="/" component={HomeScreen} />
             <Route path="/about" component={AboutScreen} />
             <Route path="/contact" component={ContactScreen} />
-            <Route path="/show-booking" component={ShowBookingScreen} />
+            
             <Route path="/add-route" component={AddRouteScreen} />
             <Route path="/add-bus" component={AddBusScreen} />
             <Route path="/add-manager" component={AddManagerScreen} />
             <Route path="/add-agent" component={AddAgentScreen} />
             <Route path="/add-driver" component={AddDriverScreen} />
             <Route path="/edit-profile" component={EditProfileScreen} />
+            <Route path="/edit-profile-manager" component={EditProfileManager} />
+            <Route path="/edit-profile-owner" component={EditProfileOwner} />
             <Route path="/royal-travels" component={RoyalTravelsScreen} />
             <Route path="/view-profile" component={viewProfileScreen} />
+            <Route path="/view-profile-manager" component={viewProfileManager} />
+            <Route path="/view-profile-owner" component={ViewProfileOwner} />
             <Route path="/make-payment" component={MakePaymentScreen} />
             <Route path="/payment-status" component={PaymentStatusScreen} />
             <Route path="/manager" component={ManagerHomeScreen} />
@@ -65,7 +74,11 @@ function App() {
               component={CheckReservationScreen}
             />
             <Route path="/bus-schedule" component={BusScheduleScreen} />
+            
+            <Route path="/my-bookings" component={ShowBookingScreen} />
+            <Route path="/" component={HomeScreen} />
           </Switch>
+          <ToastContainer/>
         </div>
         <Footer />
       </Router>

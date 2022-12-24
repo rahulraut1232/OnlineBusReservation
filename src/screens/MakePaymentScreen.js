@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PaymentApiService from "../Service/PaymentApiService";
+import BusApiService from "../Service/BusApiService";
+import UserNavigation from "../components/UserNavigation";
 
 class MakePaymentScreen extends Component {
   constructor(props) {
@@ -14,16 +16,17 @@ class MakePaymentScreen extends Component {
       netBanking: "",
       upi: "",
       message: null,
+      user: localStorage.getItem('user')
     };
   }
   savePayment = (e) => {
-    // e.preventDefault();
-    // const bus = {busName: this.state.busName, busType: this.state.busType, busNumber: this.state.busNumber, totalSeats: this.state.totalSeats};
-    // BusApiService.addBus(bus)
-    //     .then(res => {
-    //         this.setState({message : 'Bus added successfully.'});
-    //         this.props.history.push('/home');
-    //     });
+     e.preventDefault();
+     const bus = {busName: this.state.busName, busType: this.state.busType, busNumber: this.state.busNumber, totalSeats: this.state.totalSeats};
+     BusApiService.addBus(bus)
+        .then(res => {
+            this.setState({message : 'Bus added successfully.'});
+            this.props.history.push('/view-bus');
+        });
     this.props.history.push("/payment-status");
   };
 
@@ -32,21 +35,28 @@ class MakePaymentScreen extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center">Choose Payment Method</h2>
-        <form>
-          <div className="form-group mb-2">
+        {this.state.user==null?
+        this.props.history.push("/signin"):
+      <div>
+        <UserNavigation/>
+        <div className="row">
+          <div className="col-md-4"></div>
+          <div className="col-md-4">
+        <h2 className="text-center" style={{fontSize:"50px"}}>Choose Payment Method</h2>
+        <form className="form-control mb-5 bg-dark text-light" style={{fontSize:"20px", boxShadow:"2px 2px 10px black"}}>
+          <div className="form-group mb-2 form-check">
             <input
               type="radio"
-              className="form-check-input"
+              className="form-check-input "
               id="creditCard"
               name="payment"
               value={this.state.creditCard}
               onChange={this.onChange}
             />
-            <label>Credit Card:</label>
+            <label className="d-inline">Credit Card</label>
           </div>
 
-          <div className="form-group mb-2">
+          <div className="form-group mb-2 form-check">
             <input
               type="radio"
               className="form-check-input"
@@ -55,10 +65,10 @@ class MakePaymentScreen extends Component {
               value={this.state.debitCard}
               onChange={this.onChange}
             />
-            <label>Debit Card:</label>
+            <label>Debit Card</label>
           </div>
 
-          <div className="form-group mb-2">
+          <div className="form-group mb-2 form-check">
             <input
               type="radio"
               className="form-check-input"
@@ -67,10 +77,10 @@ class MakePaymentScreen extends Component {
               value={this.state.wallet}
               onChange={this.onChange}
             />
-            <label>Wallet:</label>
+            <label>Wallet</label>
           </div>
 
-          <div className="form-group mb-2">
+          <div className="form-group mb-2 form-check">
             <input
               type="radio"
               className="form-check-input"
@@ -79,10 +89,10 @@ class MakePaymentScreen extends Component {
               value={this.state.netBanking}
               onChange={this.onChange}
             />
-            <label>NetBanking:</label>
+            <label>NetBanking</label>
           </div>
 
-          <div className="form-group mb-2">
+          <div className="form-group mb-2 form-check">
             <input
               type="radio"
               className="form-check-input"
@@ -91,19 +101,23 @@ class MakePaymentScreen extends Component {
               value={this.state.upi}
               onChange={this.onChange}
             />
-            <label>UPI:</label>
+            <label>UPI</label>
           </div>
 
           <button
-            className="btn btn-success mb-2 me-2"
+            className="btn btn-warning mb-2 me-2 mt-3"
             onClick={this.savePayment}
           >
             Proceed
           </button>
-          <button className="btn btn-success mb-2 me-2" onClick={this.cancel}>
+          <button className="btn btn-danger mb-2 me-2 mt-3" onClick={this.cancel}>
             Cancel
           </button>
         </form>
+        </div>
+        </div>
+      </div>
+  }
       </div>
     );
   }

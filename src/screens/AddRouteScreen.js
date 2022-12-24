@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
+import ManagerNavigation from "../components/ManagerNavigation";
 import RouteApiService from "../Service/RouteApiService";
 
 class AddRouteScreen extends Component {
@@ -12,6 +13,7 @@ class AddRouteScreen extends Component {
       source: "",
       destination: "",
       message: null,
+      user: localStorage.getItem('user')
     };
   }
 
@@ -23,7 +25,7 @@ class AddRouteScreen extends Component {
     };
     RouteApiService.addRoute(route).then((res) => {
       this.setState({ message: "Route added successfully." });
-      this.props.history.push("/home");
+      this.props.history.push("/manager");
     });
   };
 
@@ -32,8 +34,14 @@ class AddRouteScreen extends Component {
   render() {
     return (
       <div>
+        {
+        this.state.user === null ?
+            this.props.history.push("/signin")
+            :
+        <div>
+        <ManagerNavigation/>
         <Header title="Add Route" />
-        <div className="mb-3">
+        <div className="container mb-3">
           <form>
             <div className="form-group mb-3">
               <label>Enter Source:</label>
@@ -65,6 +73,8 @@ class AddRouteScreen extends Component {
             </button>
           </form>
         </div>
+        </div>
+  }
       </div>
     );
   }

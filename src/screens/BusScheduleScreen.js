@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import { find } from "lodash";
 import ManagerApiService from "../Service/ManagerApiService";
+import ManagerNavigation from "../components/ManagerNavigation";
 
 export default class BusScheduleScreen extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class BusScheduleScreen extends React.Component {
       arrivalTime: "",
       deptTime: "",
       uniqueSources: [],
+      user: localStorage.getItem('user')
     };
     this.onSelectBus = this.onSelectBus.bind(this);
     this.onSelectRouteSource = this.onSelectRouteSource.bind(this);
@@ -97,8 +99,17 @@ export default class BusScheduleScreen extends React.Component {
   render() {
     return (
       <div>
+         {
+        this.state.user === null ?
+            this.props.history.push("/signin")
+            :
+        <div>
+        <ManagerNavigation/>
         <Header title="Bus Scheduling" />
-        <div className="form-group">
+        <div className="row">
+          <div className="col-md-4"></div>
+          <div className="col-md-6 fs-5" style={{}}>
+        <div className="form-group mt-2 mb-2">
           <label>Buses :</label>
           <select name="bus" onChange={this.onSelectBus}>
             <option value={"None"}>{"None"}</option>
@@ -112,7 +123,7 @@ export default class BusScheduleScreen extends React.Component {
               })}
           </select>
         </div>
-        <div className="form-group">
+        <div className="form-group mt-2 mb-2">
           <label>Route Source :</label>
           <select name="selectedSource" onChange={this.onChange}>
             <option value={"None"}>{"None"}</option>
@@ -122,7 +133,7 @@ export default class BusScheduleScreen extends React.Component {
               })}
           </select>
         </div>
-        <div className="form-group">
+        <div className="form-group mt-2 mb-2">
           <label>Route Destination :</label>
           <select name="selectedDestination" onChange={this.onChange}>
             <option value={"None"}>{"None"}</option>
@@ -138,6 +149,7 @@ export default class BusScheduleScreen extends React.Component {
                 })}
           </select>
         </div>
+        <div className="mt-2 mb-2">
         <label for="arrivalTime">Arrival Time(date and time):</label>
         <input
           type="datetime-local"
@@ -145,6 +157,8 @@ export default class BusScheduleScreen extends React.Component {
           name="arrivalTime"
           onChange={this.onChange}
         ></input>
+        </div>
+        <div className="mt-2 mb-2">
         <label for="deptTime">Departure Time(date and time):</label>
         <input
           type="datetime-local"
@@ -152,9 +166,16 @@ export default class BusScheduleScreen extends React.Component {
           name="deptTime"
           onChange={this.onChange}
         ></input>
+        </div>
+        <div className="mt-2 mb-2">
         <button className="btn btn-success mb-3" onClick={this.addSchedule}>
           Add Schedule
         </button>
+        </div>
+        </div>
+        </div>
+        </div>
+  }
       </div>
     );
   }

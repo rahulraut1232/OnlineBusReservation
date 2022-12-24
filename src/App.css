@@ -8,7 +8,8 @@ nav a {
   margin-right: 9%;
   height: 100%;
   width: 100%;
-}
+  background: #dce9fa; 
+ }
 
 .title {
   text-align: center;
@@ -27,8 +28,7 @@ body {
 
 .container-fluid {
   overflow: hidden;
-
-  background: #fff;
+  /* background: #fff; */
   color: #627482 !important;
   margin-bottom: 0;
   padding-bottom: 0;

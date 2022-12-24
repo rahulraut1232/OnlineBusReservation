@@ -1,73 +1,76 @@
-import { Link } from "react-router-dom";
-
+import { Link} from "react-router-dom";
+import {Button, Form, Alert, Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 const UserNavigation = (props) => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <Link to="/royal-travels">
-          <span className="navbar-brand">Royal Travels</span>
-        </Link>
 
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <Link to="/home">
-              <span className="nav-link">Home</span>
+  return (
+    <div className="">
+    <nav className="navbar navbar-dark navbar-expand-lg bg-dark" >
+      <div className="container-fluid">
+        <div className="row w-100">
+          <div className="col-md-2 align-items-center mt-2">
+        <Link to="/royal-travels">
+          <span className="navbar-brand fs-3 mt-4">Royal Travels</span>
+        </Link>
+        </div>
+        <div className="col-md-10">
+        <ul className="navbar-nav mb-auto d-flex justify-content-between text-center mx-2 my-2" style={{fontSize:"20px"}}>
+          <li className="nav-item ">
+            <Link to="/view-bus">
+              <span className="nav-link mx-4 ">Home</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/add-booking">
-              <span className="nav-link">New Bus Booking</span>
+              <span className="nav-link mx-2">New Bus Booking</span>
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link to="/add-cargo-booking">
-              <span className="nav-link">New Cargo Booking</span>
-            </Link>
-          </li>
+          
 
           <li className="nav-item">
             <Link to="/my-bookings">
-              <span className="nav-link">My Bookings</span>
+              <span className="nav-link mx-2">My Bookings</span>
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link to="/check-reservation">
-              <span className="nav-link">Check Reservation</span>
-            </Link>
-          </li>
+          
 
-          <li className="nav-item">
-            <Link to="/feedback">
-              <span className="nav-link">Feedback</span>
-            </Link>
-          </li>
+          
 
           <li className="nav-item">
             <Link to="/view-profile">
-              <span className="nav-link">View My Profile</span>
+              <span className="nav-link mx-2">View My Profile</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/edit-profile">
-              <span className="nav-link">Edit Profile</span>
+              <span className="nav-link mx-2">Edit Profile</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/change-password">
-              <span className="nav-link">Change Password</span>
+              <span className="nav-link mx-2">Change Password</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/signin">
+              <button className="btn btn-outline-warning">
+              <span className="nav-link fs-6">Logout</span>
+              </button> 
             </Link>
           </li>
         </ul>
-        <div className="d-flex">
-          <button className="btn btn-outline-success">Logout</button>
         </div>
+        </div>
+        {/* <div className="d-flex">*/
+         /* <button className="btn btn-outline-success">Logout</button>
+        </div> */}
       </div>
     </nav>
+    </div>
   );
 };
 

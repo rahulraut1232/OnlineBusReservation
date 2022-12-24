@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
+import ManagerNavigation from "../components/ManagerNavigation";
 import BusApiService from "../Service/BusApiService";
 
 class AddBusScreen extends Component {
@@ -14,6 +15,7 @@ class AddBusScreen extends Component {
       busNumber: "",
       totalSeats: "",
       message: null,
+      user: localStorage.getItem('user')
     };
   }
 
@@ -27,7 +29,7 @@ class AddBusScreen extends Component {
     };
     BusApiService.addBus(bus).then((res) => {
       this.setState({ message: "Bus added successfully." });
-      this.props.history.push("/home");
+      this.props.history.push("/manager");
     });
   };
 
@@ -36,8 +38,14 @@ class AddBusScreen extends Component {
   render() {
     return (
       <div>
+        {
+        this.state.user === null ?
+            this.props.history.push("/signin")
+            :
+        <div>
+        <ManagerNavigation/>
         <Header title="Add Bus" />
-        <div className="mb-3">
+        <div className="container mb-3 ">
           <form>
             <div className="form-group">
               <label>Bus Name:</label>
@@ -50,7 +58,7 @@ class AddBusScreen extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-2 mt-2">
               <label>Bus Type:</label>
               <input
                 type="text"
@@ -61,7 +69,7 @@ class AddBusScreen extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-2 mt-2">
               <label>Bus Number:</label>
               <input
                 type="text"
@@ -72,7 +80,7 @@ class AddBusScreen extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-2 mt-2">
               <label>Total Seats:</label>
               <input
                 type="Number"
@@ -88,6 +96,8 @@ class AddBusScreen extends Component {
             </button>
           </form>
         </div>
+        </div>
+  }
       </div>
     );
   }

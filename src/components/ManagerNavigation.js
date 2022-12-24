@@ -2,77 +2,84 @@ import { Link } from "react-router-dom";
 
 const ManagerNavigation = (props) => {
   return (
+    <div className="">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <Link to="/royal-travels">
-          <span className="navbar-brand">Royal Travels</span>
-        </Link>
-
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <div className="row " style={{width:"100vw"}}>
+          
+        
+        <div className="col-md-12 ">
+        <ul className="navbar-nav mb-auto d-flex justify-content-between text-center" style={{fontSize:"22px"}}>
           <li className="nav-item">
-            <Link to="/home">
-              <span className="nav-link">Home</span>
+            <Link to="/manager">
+              <span className="nav-link me-5">Home</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/add-route">
-              <span className="nav-link">Add Route</span>
+              <span className="nav-link me-5">Add Route</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/add-bus">
-              <span className="nav-link">Add Bus</span>
+              <span className="nav-link me-5">Add Bus</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/add-driver">
-              <span className="nav-link">Add Driver</span>
+              <span className="nav-link me-5">Add Driver</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/add-agent">
-              <span className="nav-link">Appoint Agent</span>
+              <span className="nav-link me-5">Appoint Agent</span>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link to="/view-bookings">
-              <span className="nav-link">View Bookings</span>
+              <span className="nav-link me-5">View Bookings</span>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/bus-schedule">
-              <span className="nav-link">Schedule Bus</span>
+              <span className="nav-link me-5">Schedule Bus</span>
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link to="/view-profile">
-              <span className="nav-link">View My Profile</span>
+            <Link to="/view-profile-manager">
+              <span className="nav-link me-5">View My Profile</span>
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link to="/edit-profile">
-              <span className="nav-link">Edit Profile</span>
+            <Link to="/edit-profile-manager">
+              <span className="nav-link me-5">Edit Profile</span>
             </Link>
           </li>
 
+          
+          
           <li className="nav-item">
-            <Link to="/change-password">
-              <span className="nav-link">Change Password</span>
+            <Link to="/signin">
+              <button className="btn btn-outline-warning mt-2">
+              <span className="nav-link fs-6
+              ">Logout</span>
+              </button> 
             </Link>
           </li>
         </ul>
-        <div className="d-flex">
-          <button className="btn btn-outline-success">Logout</button>
         </div>
       </div>
+      </div>
+     
     </nav>
+    </div>
   );
 };
 

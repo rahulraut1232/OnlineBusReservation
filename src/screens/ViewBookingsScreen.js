@@ -1,4 +1,5 @@
 import { Component } from "react";
+import ManagerNavigation from "../components/ManagerNavigation";
 import BookingApiService from "../Service/BookingApiService";
 
 class ViewBookingsScreen extends Component {
@@ -7,6 +8,7 @@ class ViewBookingsScreen extends Component {
     this.state = {
       bookings: [],
       message: null,
+      user: localStorage.getItem('user')
     };
     this.loadBookings = this.loadBookings.bind(this);
   }
@@ -28,6 +30,14 @@ class ViewBookingsScreen extends Component {
 
   render() {
     return (
+
+      <div>
+         {
+        this.state.user === null ?
+            this.props.history.push("/signin")
+            :
+        <div>
+        <ManagerNavigation/>
       <div className="mb-3">
         <h2 className="text-center">View All Bookings</h2>
 
@@ -57,6 +67,9 @@ class ViewBookingsScreen extends Component {
             })}
           </tbody>
         </table>
+      </div>
+      </div>
+  }
       </div>
     );
   }
